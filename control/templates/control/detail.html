@@ -1,0 +1,25 @@
+{% extends "control/base.html" %}
+
+{% block content %}
+<h1>GeoPyc Analysis Start</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<br>
+<h2> Method Details	</h2>
+<p>
+{{ method }}
+<br>
+<br>
+<p> Don't like it? <a href="/admin/control/method/{{ method.id }}" > Edit This Method </a> </p> <br>
+
+<form action="{% url 'control:run' method.id %}" method="post">
+
+{% csrf_token %}
+
+
+<input type="submit" name="runstart"   id="startbutton" value= "Start Run" />
+
+</form>
+
+{%autoescape off %}{{ object.print_html }}{%endautoescape%}
+{% endblock %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}GeoPyc: 1360{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="/static/css/base.css" />
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript">
+    function addLoadEvent(func) {
+      var oldonload = window.onload;
+      if (typeof window.onload != 'function') {
+        window.onload = func;
+      } else {
+        window.onload = function() {
+          if (oldonload) {
+            oldonload();
+          }
+          func();
+        }
+      }
+    }
+
+$( document ).ready( function() {
+    var height = document.getElementById("header").offsetHeight;
+    document.getElementById("content").style.margin = height + 'px';    
+    height = document.getElementById("footer").offsetHeight;
+    document.getElementById("content").style.marginBottom = height + 'px';    
+
+    /* Setup the clicks in the ;title' of the group to tobgle the hide state. */
+    $('.expand_collapse').click(function(e){
+      if ( $( e.target).hasClass( 'click' ) ) {
+        $(this).children('ul').toggle();
+        $(this).children('.expand_collapse_inverse').toggle();
+      }
+    });
+    $('.expand_collapse_init_hide').click(function(e){
+      if ( $( e.target).hasClass( 'click' ) ) {
+        $(this).children('ul').toggle();
+        $(this).children('.expand_collapse_inverse').toggle();
+      }
+    });
+
+    /* Hide the ... indicator for all items that are shown */ 
+    $('.expand_collapse').children('.expand_collapse_inverse').toggle();
+
+    /* Hide all the groups that are initially hidden */
+    $('.expand_collapse_init_hide').children('ul').toggle();
+
+});
+
+</script>
+{% block javascripthead %}{% endblock %}
+</head>
+
+<body>
+<!-- Container -->
+<div id="container">
+
+    <!-- Header -->
+    <div id="header">
+        {% block branding %}<h1>GeoPyc: 1360</h1>{% endblock %}
+	<div id="middle">
+		<div id="navigation">
+		  <ul>
+
+		  </ul>
+		</div>
+    </div>
+    </div>
+    <!-- END Header -->
+    <div id="footer">{% block footer %}
+
+      {% endblock %}</div>
+
+    <!-- Content -->
+    <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block contentheader %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+    <!-- END Content -->
+
+</div>
+<!-- END Container -->
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends "control/base.html" %}
+
+{% block content %}
+<!--[if lt IE 9]-->
+<script language="javascript" type="text/javascript" src="/static/js/excanvas.js"></script>
+<!--[endif]-->
+<script language="javascript" type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script language="javascript" type="text/javascript" src="/static/js/jquery.jqplot.min.js"></script>
+<script language="javascript" type="text/javascript" src="/static/js/jqplot.canvasTextRenderer.min.js"></script>
+<script language="javascript" type="text/javascript" src="/static/js/jqplot.canvasAxisLabelRenderer.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="control/static/css/jquery.jqplot.css" />
+<script  type="text/javascript">
+addLoadEvent(function() {
+$.jqplot('chartdiv',  [[ [1, 1.401], [2, 1.404], [3, 1.401], [4, 1.403], [5, 1.404], [6, 1.402], [7, 1.401], ]],
+{ axes: {
+     yaxis:{
+       min:1.0, max:1.5, 
+       label:'density', 
+       labelRenderer:$.jqplot.CanvasAxisLabelRenderer
+     },
+     xaxis:{
+       min:0, max:10, 
+       label:'cycle', 
+       labelRenderer:$.jqplot.CanvasAxisLabelRenderer
+     }
+  },
+  series:[{color:'#5FAB78'}]
+});
+});
+
+function onCancel()
+{
+  $.get("/instrument/cancel/",function(data,status){ });
+  return 1;
+};
+
+</script>
+
+
+<div id="chartdiv" style="height:100%;width:100%; "></div>
+
+{% endblock %}
+
+{% block footer %}
+<table width="100%">
+<tr>
+<td><form name="start" action="/instrument/select" method="put">
+</form></td>
+<td align="right"><form onsubmit="return false">
+<input type="submit" value="Cancel" onClick="onCancel()">
+</form></td>
+</table>
+{% include "control/inst-status.inc.html" %}
+{% endblock %}
+
+

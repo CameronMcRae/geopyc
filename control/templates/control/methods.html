@@ -1,0 +1,35 @@
+{% extends "control/base.html" %}
+
+{% block content %}
+
+<h1> Methods: </h1>
+
+<form action="{% url 'control:analysis' %}" method="post">
+{% csrf_token %}
+
+<input type ="radio" name="runtype" id="runzerodepth" value = "Zero-Depth" />
+<label for="runzerodepth">Zero-Depth</label>
+<input type ="radio" name="runtype" id="runcalibration" value = "Calibration" />
+<label for="runcalibration">Calibration</label>
+<input type ="radio" name="runtype" id="runblank" value = "Blank Data" />
+<label for="runblank">Blank Data</label>
+<input type ="radio" name="runtype" id="runsample" value = "Sample" />
+<label for="runsample">Sample</label>
+
+<br>
+<br>
+
+Mass:    <input type="text" name="mass"> <br>
+Operator: <input type="text" name="opname"> <br>
+Diameter: <input type="text" name = "dmtr"> <br>
+Sample Name: <input type="text" name="smpl"> <br>
+
+<br>
+
+<input type="submit" name="runstart"   id="startbutton" value= "Start Run" />
+</form>
+
+{%autoescape off %}{{ object.print_html }}{%endautoescape%}
+
+{% endblock %}
+

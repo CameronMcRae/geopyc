@@ -1,0 +1,43 @@
+<div id="inst-status">
+
+<!--- Don't do continuous updates.  
+<script  type="text/javascript">
+function onUpdateStatus(data) {
+    for ( var k in data ) {
+         $("#inst-status #"+k).html(data[k]);
+    }
+}
+addLoadEvent(function() {
+
+	var updateInterval = 500;
+
+	function update() {
+		$.ajax({
+			url: "/analysis-status/",
+			type: "GET",
+			dataType: "json",
+			success: onUpdateStatus
+		});
+        setTimeout(update, updateInterval);
+    }
+	update();
+});
+--->
+
+</script>
+<table  bgcolor="#00ffff" border="0" width ="100%">
+<tr><th>Sample:</th><td class="long" width="99%">{{ sample }}</td></tr>
+<tr><th>Details:</th><td  class="long">Example Long Status</td></tr>
+<tr><td colspan = 2><table width = 100%>
+<tr><th>Stage</th><th>Last Point</th><th>p(mmHg)</th><th>p/p<sup>0</sup></th><th>Q (cm<sup>3</sup>/g STP)</th><th>P<sup>0</sup> (mmHg)</th><th>Run Time</th></tr>
+<tr><td id="stage"></td><td id="points"></td><td id="press_abs"></td><td id="press_rel"></td><td id="vol_ads"></td><td id="p0"></td><td id="run_time"></td></tr>
+</table border="0"></td></tr>
+<tr><td colspan = 2>
+<table cellspacing="0" width="100%" border="0"><tr>
+<td width="30%"><div id="perc"><div id="prelim">Preliminary</div></div></td>
+<td width="30%"><div id="perc"><div id="anlalysis" >Analysis   </div></div></td>
+<td width="30%"><div id="perc"><div id="termination">Termination</div></div></td>
+</tr></table>
+</td></tr>
+</table>
+</div>

@@ -1,0 +1,9 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ GeoPyc 1360 }} | {{ site_title|default:_('GeoPyc 1360') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ GeoPyc 1360 |default:_('GeoPyc 1360') }}</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "control/base.html" %}
+{% block content %}
+
+<h1 "font-size:20px;" > Click on a method to run it. </h1> <br>
+
+{% if latest_method_list %}
+    <ul>
+    {% for method in latest_method_list %}
+        <li><a href="/control/detail/{{ method.id }}/" >{{ method }}</a></li>
+    {% endfor %}
+    </ul>
+    <br>
+    <p> Not a method here that you want to run? <a href="/admin/control/method/add" > Create a New Method </a> </p>
+{% else %}
+    <p>No methods have been created yet. <br>
+    Create one here: <a href="/admin/control/method/add" > Create a New Method </a> 
+    </p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "control/base.html" %}
+{% block content %}
+
+<h1 "font-size:20px;" > History of Runs: </h1> <br>
+<h2> Click on a run to view its method. </h2> <br>
+
+{% if latest_run_list %}
+    <ul>
+    {% for method in latest_method_list %}
+        <li><a href="/control/detail/{{ method.id }}/" > {{ run }}</a></li>
+    {% endfor %}
+    </ul>
+    <br>
+
+{% else %}
+    <p> No methods have been run yet. <br>
+    Run one here: <a href="/control/index" > Run a Method </a> 
+    </p>
+{% endif %}
+
+{% endblock %}
